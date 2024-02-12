@@ -18,4 +18,7 @@
   
 
     NOTA DE ATENÇÃO:
-        Os códigos deste repositório são (open source) destino a pesquisa científica e aprendizagem gratuito, não devem serem usados para fins comercias/financeiros. Em caso de comercialização, considera-se crime de Artigo 171 do Código Penal (tipifica o crime de estelionato que é "obter, para si ou para outrem, vantagem ilícita, em prejuízo alheio, induzindo ou mantendo alguém em erro, mediante artifício, ardil, ou qualquer outro meio fraudulento")
+        Os códigos deste repositório são (open source) destino a pesquisa científica e aprendizagem gratuito, não devem serem usados para
+        fins comercias/financeiros. Em caso de comercialização, considera-se crime de Artigo 171 do Código Penal (tipifica o crime de 
+        estelionato que é "obter, para si ou para outrem, vantagem ilícita, em prejuízo alheio, induzindo ou mantendo alguém em erro,
+        mediante artifício, ardil, ou qualquer outro meio fraudulento")
