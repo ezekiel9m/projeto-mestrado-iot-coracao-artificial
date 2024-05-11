@@ -5,8 +5,7 @@ from src.models.baseModel import SecurityIn
 from ..schemas.schema import (
     ListOutput, OutputObject
 )
-from ..services.securityService import SecurityService
-
+from ..services.securityService import  SecurityService 
 security_router = APIRouter(prefix='/security')
 
 @security_router.get('/list_apiKey', status_code=200)
@@ -32,16 +31,31 @@ async def check_api_key(api_key: str):
     except Exception as error:
         raise HTTPException(400, detail=str(error))
     
-@security_router.post('/create', status_code=201,)
+@security_router.post('/create', status_code=201)
 async def create_api_key(securityIn: SecurityIn,
                           api_key: Annotated[str, Header(convert_underscores=True)]):
     try:
         checkKey = await SecurityService.check_api_key(api_key)
         if  checkKey == True:
             if securityIn.body.count == 0:
-                raise ValidationError("end_point is requied")
+                raise ValidationError("end point is requied")
             else:
                 await SecurityService.create_api_key(securityIn)
+    except Exception as error:
+        raise HTTPException(400, detail=str(error))
+    
+@security_router.post('/create_secret_key', status_code=201)
+async def create_secret_key():
+    try:
+      await SecurityService.create_secret_key()
+    except Exception as error:
+        raise HTTPException(400, detail=str(error))
+    
+@security_router.get('/private_key', status_code=200)
+async def get_private_key():
+    try:
+        #response = await SecurityService.get_private_key()
+        return 0
     except Exception as error:
         raise HTTPException(400, detail=str(error))
 

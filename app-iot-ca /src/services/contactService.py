@@ -9,7 +9,7 @@ class ContactService:
         contacts = Contacts.find()
         return list(contacts)
     
-    async def list_patient_contacts(identifier: str):
+    async def list_patient_contacts(identifier: int):
         contact = Contacts.find_one({"identifier": identifier})
         return dict(contact)
 
@@ -50,9 +50,9 @@ class ContactService:
                     "lastname": contactIn.lastname,
                     "email": contactIn.email,
                     "phone": contactIn.phone,
-                    "datacreate": datetime.new
+                    "date_create": datetime.new
                 },
-                "dataupdate": datetime.new()
+                "date_update": datetime.new()
             }
         )
 

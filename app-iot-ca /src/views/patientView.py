@@ -20,24 +20,24 @@ async def list_patients():
         raise HTTPException(400, detail=str(error))
 
 @patient_router.get('/{_id}', status_code=200)
-async def patient_id(_id: str):
+async def get_patient_id(_id: str):
     try:
         patient = await PatientService.patient_id(_id)
         response = OutputObject(patient)
         identifier = response["identifier"]
 
         contact = await ContactService.list_patient_contacts(identifier)
-        dadas = await DataService.list_patient_datas(identifier)
+        dadas = await DataService.list_patient_data(identifier)
         return ListOutputPatient(patient, contact, dadas)
     except Exception as error:
         raise HTTPException(400, detail=str(error))
     
 @patient_router.get('/get/{identifier}', status_code=200)
-async def patient_id(identifier: str):
+async def get_patient_identifier(identifier: int):
     try:
         patient = await PatientService.patient_identifier(identifier)
         contact = await ContactService.list_patient_contacts(identifier)
-        dadas = await DataService.list_patient_datas(identifier)
+        dadas = await DataService.list_patient_data(identifier)
         return ListOutputPatient(patient, contact, dadas)
     except Exception as error:
         raise HTTPException(400, detail=str(error))
@@ -45,7 +45,8 @@ async def patient_id(identifier: str):
 @patient_router.post('/create', status_code=201)
 async def create_patient(patientIn: PatientIn):
     try:
-        await PatientService.create_patient(patientIn)
+       response = await PatientService.create_patient(patientIn)
+       return response
     except Exception as error:
         raise HTTPException(400, detail=str(error))
 

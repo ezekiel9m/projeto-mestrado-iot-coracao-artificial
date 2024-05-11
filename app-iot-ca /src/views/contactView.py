@@ -26,7 +26,7 @@ async def contact_id(_id: str):
         raise HTTPException(400, detail=str(error))
     
 @contact_router.get('/patient/{identifier}', status_code=200)
-async def list_patient_contacts(identifier: str):
+async def list_patient_contacts(identifier: int):
     try:
         response = await ContactService.list_patient_contacts(identifier)
         return OutputObject(response)
@@ -36,11 +36,13 @@ async def list_patient_contacts(identifier: str):
 @contact_router.post('/create', status_code=201)
 async def create_contact(contactIn: ContactIn):
     try:
-        if contactIn.count() > 3:
-            raise ValidationError("Is requied only 3 contacts")
+        
+        if len(contactIn.body) > 3:
+            raise ValidationError("is requied only 3 contacts")
         else:
-         if Validation.validator_contacts(contactIn):
-            await ContactService.create_contact(contactIn)
+            if Validation.validator_contacts(contactIn):
+                await ContactService.create_contact(contactIn)
+            
     except Exception as error:
         raise HTTPException(400, detail=str(error))
 

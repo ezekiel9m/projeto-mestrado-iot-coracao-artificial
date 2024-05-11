@@ -26,9 +26,9 @@ async def user_id(user_id: str):
         raise HTTPException(400, detail=str(error))
     
 @user_router.post('/create', response_model=None, status_code=201)
-async def create_user(user_input: UserIn):
+async def create_user(userIn: UserIn):
     try:
-        await UserService.create_user(user_input)
+        await UserService.create_user(userIn)
     except Exception as error:
         raise HTTPException(400, detail=str(error))
 

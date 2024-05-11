@@ -1,34 +1,52 @@
 from pydantic import BaseModel
 
 class DefaultModel(BaseModel):
-  first_name: str
-  last_name: str
-  phone_number: str
+  firstname: str
+  lastname: str
+  age: int
+  weight: int
+  sex: str
+  phonenumber: str
   email: str
 
-class contactsModel(BaseModel): 
-  phone_number: str
-  contact_name: str
-  contact_email: str
-  degree_kinship: str
+class BoardModel(BaseModel):
+  boad: str
+  model: str
+  version: str
+  manufacturing_year: int
 
+class contactsModel(BaseModel): 
+  phonenumber: str
+  contactname: str
+  contactemail: str
+  degreekinship: str
+
+class BaseDataInModel(BaseModel):
+  identifier: int 
+  heartbeat: int 
+  X: int 
+  Y: int 
+  Z: int 
+  time: str
+  
 class Moviments(BaseModel):
-  X: str
-  Y: str
-  Z: str
+  X: int 
+  Y: int 
+  Z: int 
   
 class DataModel(BaseModel):
   moviments: Moviments
-  heartbeat: str
+  heartbeat: int 
   location: str
   datecollect: str
+  timecollect: str
 
 class UserModel(BaseModel):
   firstname: str 
   lastname: str
   username: str
-  password: str = None
-  confirmpassword: str = None
+  password: str 
+  confirmpassword: str
   email: str
 
 class PasswordModel(BaseModel):
@@ -45,4 +63,4 @@ class SecurityModel(BaseModel):
 class DataOccurrenceModel(BaseModel):
   occurrence: str
   location: str
-  occurrence_date: str
+  occurrencedate: str

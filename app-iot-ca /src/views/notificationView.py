@@ -5,16 +5,16 @@ from ..models.baseModel import DataOccurrenceIn
 from ..schemas.schema import (
     ListOutput, OutputObject
 )
-from src.services.patientService import PatientService
+from src.services.notificationService import NotificationService
 from src.services.dataService import DataService
 
 notification_router = APIRouter(prefix='/notification')
 
-@notification_router.post('/send_notification/{identifier}')
-async def send_notification(dataOccurrenceIn: DataOccurrenceIn, identifier: str):
+@notification_router.post('/send_notification/{identifier}', status_code=200)
+async def send_notification(identifier: int, dataOccurrenceIn: DataOccurrenceIn):
     try:
-        await PatientService.send_notification(identifier)
-        await DataService.create_history_occurrence(identifier, dataOccurrenceIn)
+       return await NotificationService.send_notification(identifier, dataOccurrenceIn)
+        #await DataService.create_history_occurrence(identifier, dataOccurrenceIn)
     except Exception as error:
         raise HTTPException(400, detail=str(error))
 

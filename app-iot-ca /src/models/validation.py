@@ -10,7 +10,7 @@ class Validation:
     async def validator_datas(doc):
         body = doc.body
 
-        if len(body) == 0:
+        if body.count() == 0:
             raise ValueError(" object request cannot be null")
         else:
             if body.moviments.X == null:
@@ -23,12 +23,13 @@ class Validation:
                 raise ValueError("fild heartbeat is requied")
             if body.datecollect == null:
                 raise ValueError("fild datecollect is requied")
+                
     
     async def validator_contacts(doc):
         body = doc.body
 
-        if body.count() == 0:
-            raise ValueError(" object request cannot be null")
+        if len(body) == 0:
+            raise ValueError(" contact cannot be null")
         else:
             if body.phone_number == null:
                 raise ValueError("fild phone number is requied")
@@ -36,7 +37,11 @@ class Validation:
                 raise ValueError("fild contact name is requied")
             if body.degree_kinship == null:
                 raise ValueError("fild degree kinship is requied")
-    
+            if body.contact_email == null:
+                raise ValueError("fild contact email is requied")
+            else:
+                _validate_email(body.contact_email)
+
     async def validator_patient(doc):
         body = doc.body
 
@@ -47,18 +52,18 @@ class Validation:
                 raise ValueError("fild identifier is requied")
             if doc.doctor_id == null:
                 raise ValueError("fild doctor id is requied")
-            if body.first_name == null:
+            if body.firstname == null:
                 raise ValueError("fild first name is requied")
-            if body.last_name == null:
+            if body.lastname == null:
                 raise ValueError("fild last name is requied")
-            if body.phone_number == null:
+            if body.phonenumber == null:
                 raise ValueError("fild phone number is requied")
             if body.email == null:
                 raise ValueError("fild email is requied")
             else:
-                validate_email(body.email)
+                _validate_email(body.email)
                
-def validate_email(email):
+def _validate_email(email):
     try:
          validate_email(email)
     except EmailNotValidError as error:
