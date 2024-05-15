@@ -12,8 +12,8 @@ async def send_email(emailDestine, contaName, namePatient,type, data: DataOccurr
     # Configuração
     host = 'smtp.office365.com'
     port = 587
-    user = 'kilson-key7@hotmail.com'
-    password = 'Manuela@2230'
+    user = ''
+    password = ''
 
     # Criando objeto
     server = smtplib.SMTP(host, port)
